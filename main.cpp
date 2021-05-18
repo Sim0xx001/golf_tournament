@@ -12,6 +12,7 @@ typedef struct Players {
 	int year;
 }player;
 
+// OVERLOADS
 ostream& operator << (ostream& out, player& p) {
 	return out << "First name: " << p.first_name << "\nLast name: " << p.last_name << "\nYear of birth: " << p.year
 		<< "\nClub: " << p.club << "\nPoints: " << p.points << endl;
@@ -21,6 +22,17 @@ bool operator > (player& left, player& right) {
 	return left.points > right.points;
 }
 
+string operator * (string left, int right) {
+	string str = "";
+	for (int i = 0; i < right; i++) {
+		str += left;
+	}
+	return str;
+}
+
+// OVERLOADS END
+
+// Convert string to player type and fill the struct variables
 void stringToPlayer(string str, player* p) {
 	string reader = "";
 	string arr[5];
@@ -40,19 +52,10 @@ void stringToPlayer(string str, player* p) {
 	p->club = arr[2];
 	p->points = stof(arr[3]);
 	p->year = stoi(arr[4]);
-
-	return;
-
-	for (char x : str) {
-		if (x != ';' && x != '\0')
-			reader += x;
-		else {
-			arr[counter++] = reader;
-			reader = "";
-		}
-	}
 }
 
+
+// Read the file and fill the vector
 void readFile(string file, vector<player>* ptr) {
 	ifstream data;
 	data.open(file);
@@ -67,6 +70,8 @@ void readFile(string file, vector<player>* ptr) {
 	}
 }
 
+
+// Print players according to sorted points
 void print_sort(vector<player>* ptr, bool sort) {
 	bool sorted = false;
 	while (!sorted) {
@@ -91,6 +96,8 @@ void print_sort(vector<player>* ptr, bool sort) {
 	}
 }
 
+
+// Print player by last name and all the players with the same points
 void sortByLastName(vector<player>* ptr, string last) {
 	short points = 0;
 	for (int i = 0; i < ptr->size(); i++) {
@@ -106,9 +113,18 @@ void sortByLastName(vector<player>* ptr, string last) {
 			if (ptr->operator[](i).points == points)
 				cout << ptr->operator[](i) << endl;
 		}
-		
 	}
+}
 
+
+// Delete players by points
+void deleteByPoints(vector<player>*ptr, float points) {
+	for (int i = 0; i < ptr->size(); i++) {
+		if (ptr->operator[](i).points == points) {
+			ptr->erase(ptr->begin() + i);
+			i--;
+		}
+	}
 }
 
 
@@ -118,12 +134,19 @@ int main() {
 
 	readFile("Punteggi.txt", &data);
 
-	/*for (player x : data)
-		cout << x << endl;*/
+	cout << "b)" << endl;
+	print_sort(&data, 1);
+	cout << (string)"*" * 30 << endl;
 
-	// print_sort(&data, 1);
-
+	cout << "c)" << endl;
 	sortByLastName(&data, "Strati");
+	cout << (string)"*" * 30 << endl;
+
+	cout << "d)" << endl;
+	deleteByPoints(&data, 129.0);
+
+	for (player x : data)
+		cout << x << endl;
 
 	system("pause");
 	return 0;
