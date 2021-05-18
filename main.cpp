@@ -70,7 +70,7 @@ void readFile(string file, vector<player>* ptr) {
 	}
 }
 
-
+// sos
 // Print players according to sorted points
 void print_sort(vector<player>* ptr, bool sort) {
 	bool sorted = false;
