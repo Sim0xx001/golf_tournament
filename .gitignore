@@ -340,6 +340,6 @@ ASALocalRun/
 healthchecksdb
 
 # Visual Studio project files
-*.sln
-*.vcxproj
-*.vcxproj.filters
+golf_tournament.sln
+golf_tournament.vcxproj
+golf_tournament.vcxproj.filters
