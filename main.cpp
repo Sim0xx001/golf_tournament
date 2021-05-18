@@ -17,6 +17,10 @@ ostream& operator << (ostream& out, player& p) {
 		<< "\nClub: " << p.club << "\nPoints: " << p.points << endl;
 }
 
+bool operator > (player& left, player& right) {
+	return left.points > right.points;
+}
+
 void stringToPlayer(string str, player* p) {
 	string reader = "";
 	string arr[5];
@@ -63,6 +67,30 @@ void readFile(string file, vector<player>* ptr) {
 	}
 }
 
+void print_sort(vector<player>* ptr, bool sort) {
+	bool sorted = false;
+	while (!sorted) {
+		sorted = true;
+		for (int i = 0; i < ptr->size() - 1; i++) {
+			if (ptr->operator[](i) > ptr->operator[](i + 1)) {
+				swap(ptr[i], ptr[i + 1]);
+				sorted = false;
+			}
+		}
+	}
+
+	if (sort) {
+		for (int i = 0; i < ptr->size(); i++) {
+			cout << ptr->operator[](i) << endl;
+		}
+	}
+	else {
+		for (int i = ptr->size() - 1; i < ptr->size(); i--) {
+			cout << ptr->operator[](i) << endl;
+		}
+	}
+}
+
 
 int main() {
 
@@ -70,8 +98,10 @@ int main() {
 
 	readFile("Punteggi.txt", &data);
 
-	for (player x : data)
-		cout << x << endl;
+	/*for (player x : data)
+		cout << x << endl;*/
+
+	print_sort(&data, 1);
 
 	system("pause");
 	return 0;
