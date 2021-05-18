@@ -338,8 +338,3 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-
-# Visual Studio project files
-golf_tournament.sln
-golf_tournament.vcxproj
-golf_tournament.vcxproj.filters
