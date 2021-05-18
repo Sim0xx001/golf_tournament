@@ -1,0 +1,3 @@
+Rossi;Mario;rosso;121.0;1984
+Strati;Bruno;verde;129.0;1997
+Faro;Simone;ricorsione;129.0;1982
