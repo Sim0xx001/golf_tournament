@@ -77,8 +77,8 @@ void print_sort(vector<player>* ptr, bool sort) {
 	while (!sorted) {
 		sorted = true;
 		for (int i = 0; i < ptr->size() - 1; i++) {
-			if (ptr->operator[](i) > ptr->operator[](i + 1)) {
-				swap(ptr[i], ptr[i + 1]);
+			if (ptr->operator[](i).points > ptr->operator[](i + 1).points) {
+				swap(ptr->operator[](i), ptr->operator[](i + 1));
 				sorted = false;
 			}
 		}
@@ -139,7 +139,7 @@ int main() {
 	cout << (string)"*" * 30 << endl;
 
 	cout << "c)" << endl;
-	sortByLastName(&data, "Strati");
+	sortByLastName(&data, "BUCHI");
 	cout << (string)"*" * 30 << endl;
 
 	cout << "d)" << endl;
