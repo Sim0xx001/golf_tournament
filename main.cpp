@@ -91,6 +91,26 @@ void print_sort(vector<player>* ptr, bool sort) {
 	}
 }
 
+void sortByLastName(vector<player>* ptr, string last) {
+	short points = 0;
+	for (int i = 0; i < ptr->size(); i++) {
+		if (ptr->operator[](i).last_name == last) {
+			cout << ptr->operator[](i) << endl;
+			points = ptr->operator[](i).points;
+			break;
+		}
+	}
+
+	for (int i = 0; i < ptr->size(); i++) {
+		if(ptr->operator[](i).last_name != last){
+			if (ptr->operator[](i).points == points)
+				cout << ptr->operator[](i) << endl;
+		}
+		
+	}
+
+}
+
 
 int main() {
 
@@ -101,7 +121,9 @@ int main() {
 	/*for (player x : data)
 		cout << x << endl;*/
 
-	print_sort(&data, 1);
+	// print_sort(&data, 1);
+
+	sortByLastName(&data, "Strati");
 
 	system("pause");
 	return 0;
